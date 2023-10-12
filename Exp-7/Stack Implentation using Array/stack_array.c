@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "stack_array.h"
 struct Stack* createStack(unsigned capacity)
 {
