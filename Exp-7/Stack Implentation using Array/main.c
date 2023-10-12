@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "stack_array.h"
 #include "stack_array.c"
 int main() {
