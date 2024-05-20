@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct TreeNode{
+    int data;
+    struct TreeNode* firstChild;
+    struct TreeNode* nextSibiling;
+};
+
+//typedef struct TreeNode* struct TreeNode*;
+
+struct TreeNode* CreateNewNode(int data){
+    struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    newNode->data = data;
+    newNode->firstChild=NULL;
+    newNode->nextSibiling=NULL;
+    return newNode;
+}
+
+void addChild(struct TreeNode* parent,struct TreeNode* child){
+    if(parent->firstChild ==NULL){
+        parent->firstChild=child;
+    }
+    else{
+        struct TreeNode* temp = parent->firstChild;
+        while(temp->nextSibiling != NULL){
+            temp = temp->nextSibiling;
+        }
+        temp->nextSibiling = child;
+    }
+}
+
+void traverse(struct TreeNode* node){
+    if(node == NULL){
+        return ;
+    }
+    printf("%d -> ",node->data);
+
+    traverse(node->firstChild);
+    traverse(node->nextSibiling);
+
+}
+
+int main(){
+    struct TreeNode* root = CreateNewNode(1);
+    struct TreeNode* child1 = CreateNewNode(2);
+    struct TreeNode* child2 = CreateNewNode(3);
+    struct TreeNode* child3 = CreateNewNode(4);
+    struct TreeNode* child4 = CreateNewNode(5);
+
+    addChild(root,child1);
+    addChild(root,child2);
+    addChild(child2,child3);
+    addChild(root,child4);
+
+    printf("Traversal : ");
+    traverse(root);
+    printf("\n");
+
+    return 0;
+}
